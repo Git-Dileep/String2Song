@@ -39,16 +39,16 @@ A web application that converts arbitrary text—stories, poems, notes, or struc
 
 ### 1. Spotify App Configuration
 
-1. Navigate to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) and sign in.
-2. Select **Create app**.
-3. Configure the application details:
-* **App Name**: `String2Song`
-* **App Description**: `Text to Spotify playlist generator`
-* **Redirect URIs**: `http://localhost:3000/callback` *(must match protocol, port, and path exactly)*
-* **APIs used**: Select **Web API**
-
-
-4. Save changes and copy the generated **Client ID**.
+1. Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) and log in.
+2. Click **Create app**.
+3. Fill out the app details:
+   - **App Name**: `String2Song` (or any name you prefer)
+   - **App Description**: `Convert text into Spotify playlists`
+   - **Redirect URIs**: 
+     - For local development: `http://localhost:3000/callback` (or `http://127.0.0.1:3000/callback` if localhost doesn't work)
+     - *(Ensure exact match, including protocol, port, and trailing path!)*
+   - **Which API/SDKs are you planning to use?**: Select **Web API**.
+4. Save the app and copy your **Client ID**.
 
 > **Note on Developer Mode**:
 > Applications in Development Mode can only authenticate users explicitly registered under **Settings > User Management** in the Spotify Dashboard. Add your personal account email before testing.
@@ -76,7 +76,8 @@ Update `.env.local` with your credentials:
 ```env
 NEXT_PUBLIC_SPOTIFY_CLIENT_ID=your_spotify_client_id_here
 NEXT_PUBLIC_REDIRECT_URI=http://localhost:3000/callback
-
+# Note: If localhost doesn't work in your browser, change this to http://127.0.0.1:3000/callback 
+# Make sure it exactly matches the Redirect URI in your Spotify Dashboard!
 ```
 
 ---
@@ -88,7 +89,7 @@ npm run dev
 
 ```
 
-The application will be accessible at [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) or [http://127.0.0.1:3000](http://127.0.0.1:3000) in your browser.
 
 ---
 
