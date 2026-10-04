@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@theme {
+  --color-spotify-green: #1DB954;
+  --color-spotify-green-dark: #1aa34a;
+  --color-spotify-green-light: #1ed760;
+  --color-spotify-black: #191414;
+  --color-surface-0: #09090b;
+  --color-surface-1: #18181b;
+  --color-surface-2: #27272a;
+  --color-surface-3: #3f3f46;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #71717a;
+  --color-border: #27272a;
+  --color-border-hover: #3f3f46;
+  --color-danger: #ef4444;
+  --color-amber: #f59e0b;
+}
+
+/* ─── Base styles ─── */
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--color-surface-0);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+}
+
+/* ─── Scrollbar ─── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-3);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ─── Custom utilities ─── */
+
+.glass {
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(39, 39, 42, 0.6);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(29, 185, 84, 0.15), 0 0 60px rgba(29, 185, 84, 0.05);
+}
+
+/* ─── Toggle switch ─── */
+
+.toggle-track {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--color-surface-3);
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.toggle-track[data-checked="true"] {
+  background: var(--color-spotify-green);
+}
+.toggle-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: white;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.2s ease;
+}
+.toggle-track[data-checked="true"] .toggle-thumb {
+  transform: translateX(20px);
+}
+
+/* ─── Animations ─── */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(29, 185, 84, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(29, 185, 84, 0.4); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out both;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-2) 25%,
+    var(--color-surface-3) 50%,
+    var(--color-surface-2) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ─── Progress bar ─── */
+
+.progress-bar {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-surface-2);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-spotify-green), var(--color-spotify-green-light));
+  transition: width 0.3s ease;
+}
+
+/* ─── Status badges ─── */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.badge-found {
+  background: rgba(29, 185, 84, 0.15);
+  color: var(--color-spotify-green-light);
+  border: 1px solid rgba(29, 185, 84, 0.3);
+}
+
+.badge-ambiguous {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--color-amber);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-not-found {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ─── Gradient text ─── */
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-spotify-green), #1ed760, #6ee7b7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Audio player ─── */
+
+audio::-webkit-media-controls-panel {
+  background: var(--color-surface-2);
+}
